@@ -1,0 +1,468 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robot Bodies</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Manrope:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+  :root { --bg: #0A0D14; --bg2: #11162A; --ink: #F2F5FA; --ink-3: #74809C; --line: rgba(255,255,255,.12); --brand: #F26A1B; --brand-d: #D9480F; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: radial-gradient(ellipse 120% 90% at 30% 10%, var(--bg2) 0%, var(--bg) 60%); color: var(--ink); font-family: "Manrope", "Helvetica Neue", Arial, sans-serif; }
+  header { position: sticky; top: 0; z-index: 5; background: rgba(10,13,20,.88); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding: 18px 8vw; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  header a.back { color: var(--ink-3); text-decoration: none; font-size: 14px; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; }
+  header a.back:hover { color: var(--brand); }
+  header h1 { font-family: "Sora", sans-serif; font-size: 18px; font-weight: 700; margin: 0; letter-spacing: -0.01em; color: var(--brand); }
+  main { max-width: 1200px; margin: 0 auto; padding: 40px 8vw 100px; }
+  .lead { color: var(--ink-3); font-size: 15px; max-width: 62ch; margin: 0 0 44px; line-height: 1.5; }
+  .card { margin-bottom: 56px; }
+  .card .tag { font-family: "Sora", sans-serif; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--brand); font-weight: 700; margin-bottom: 14px; }
+  .frame { border-radius: 20px; overflow: hidden; box-shadow: 0 30px 70px rgba(0,0,0,.4); display: inline-block; max-width: 100%; }
+  .frame > div { max-width: 100%; }
+  @media (max-width: 700px) { .frame { transform-origin: top left; } }
+</style>
+
+</head><body>
+<header>
+  <a class="back" href="index.html">&larr; Back to the deck</a>
+  <h1>Robot Bodies</h1>
+  <span></span>
+</header>
+<main>
+  <p class="lead">The pet and the companion, two bodies built around the same brain. The companion is the one Fahim ships with first.</p>
+  <div class="card">
+      <div class="tag">Pet · front</div>
+      <div class="frame"><div><div style="width: 640px; height: 980px; background: linear-gradient(180deg, #DCE6F4 0%, #F2F5FA 55%, #F7F8FB 100%); color: #1C1E22; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; padding: 36px 40px; box-sizing: border-box;">
+  <div style="display: flex; flex-direction: column; gap: 4px; flex-shrink: 0;">
+    <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #2563EB; font-weight: 600;">Pet robot · Builder tier · front view</div>
+    <div style="display: flex; align-items: baseline; gap: 14px;"><div class="d" style="font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: -0.03em;">Fahim the pet</div><div style="font-size: 30px; line-height: 1; color: #2563EB; direction: rtl;">فهيم</div></div>
+    <div style="font-size: 15px; color: #5A5E66; margin-top: 4px;">The brain slides into the head pod. Its visor is the face, its halo is the mood, and the whole head lifts off in one move.</div>
+  </div>
+
+  <svg viewBox="0 0 560 550" width="560" height="550" style="flex-shrink: 0; align-self: center;">
+    <defs>
+      <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#7C3AED"></stop>
+        <stop offset="0.55" stop-color="#2563EB"></stop>
+        <stop offset="1" stop-color="#22D3EE"></stop>
+      </linearGradient>
+      <linearGradient id="white" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFFFF"></stop>
+        <stop offset="1" stop-color="#E3E7EE"></stop>
+      </linearGradient>
+      <linearGradient id="leg" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#F6F7FA"></stop>
+        <stop offset="1" stop-color="#DDE2EA"></stop>
+      </linearGradient>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="6" result="b"></feGaussianBlur>
+        <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+      </filter>
+    </defs>
+    <g transform="translate(0,20)">
+      <ellipse cx="280" cy="520" rx="220" ry="14" fill="#C9D3E2" opacity="0.6"></ellipse>
+
+      <rect x="150" y="280" width="260" height="210" rx="105" fill="url(#white)"></rect>
+
+      <g transform="rotate(18 120 405)">
+        <rect x="60" y="300" width="120" height="210" rx="60" fill="url(#leg)"></rect>
+        <ellipse cx="120" cy="498" rx="40" ry="14" fill="#1F2328"></ellipse>
+      </g>
+      <g transform="rotate(-18 440 405)">
+        <rect x="380" y="300" width="120" height="210" rx="60" fill="url(#leg)"></rect>
+        <ellipse cx="440" cy="498" rx="40" ry="14" fill="#1F2328"></ellipse>
+      </g>
+
+      <ellipse cx="280" cy="302" rx="44" ry="14" fill="#C9CED8"></ellipse>
+
+      <ellipse cx="280" cy="185" rx="178" ry="138" fill="url(#white)"></ellipse>
+      <ellipse cx="230" cy="78" rx="90" ry="22" fill="#FFFFFF" opacity="0.75"></ellipse>
+
+      <rect x="136" y="92" width="288" height="186" rx="82" fill="url(#rim)" filter="url(#glow)"></rect>
+      <rect x="143" y="99" width="274" height="172" rx="76" fill="#0B0E14"></rect>
+      <ellipse cx="232" cy="185" rx="24" ry="30" fill="#FFFFFF" filter="url(#glow)"></ellipse>
+      <ellipse cx="328" cy="185" rx="24" ry="30" fill="#FFFFFF" filter="url(#glow)"></ellipse>
+      <ellipse cx="232" cy="185" rx="24" ry="30" fill="none" stroke="#5EE1FF" stroke-width="4" opacity="0.8"></ellipse>
+      <ellipse cx="328" cy="185" rx="24" ry="30" fill="none" stroke="#5EE1FF" stroke-width="4" opacity="0.8"></ellipse>
+      <ellipse cx="220" cy="118" rx="60" ry="12" fill="#FFFFFF" opacity="0.14"></ellipse>
+
+      <g fill="#C9CED8">
+        <rect x="428" y="150" width="22" height="6" rx="3"></rect>
+        <rect x="428" y="164" width="24" height="6" rx="3"></rect>
+        <rect x="428" y="178" width="25" height="6" rx="3"></rect>
+        <rect x="428" y="192" width="24" height="6" rx="3"></rect>
+        <rect x="428" y="206" width="22" height="6" rx="3"></rect>
+      </g>
+      <circle cx="255" cy="56" r="7" fill="#E3E7EE"></circle>
+      <circle cx="305" cy="56" r="7" fill="#E3E7EE"></circle>
+
+      <rect x="262" y="300" width="36" height="14" rx="7" fill="#1F2328"></rect>
+      <circle cx="273" cy="307" r="2.5" fill="#5EE1FF"></circle>
+      <circle cx="287" cy="307" r="2.5" fill="#5EE1FF"></circle>
+    </g>
+  </svg>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px;">
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <div class="d" style="font-size: 15px; font-weight: 700; color: #2563EB;">Clap, and it looks up at you</div>
+      <div style="font-size: 13px; line-height: 1.45; color: #5A5E66;">Mic on the brain, a clap model trained in the browser, the tilt and pan servos.</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <div class="d" style="font-size: 15px; font-weight: 700; color: #2563EB;">Pick it up, the eyes go wide</div>
+      <div style="font-size: 13px; line-height: 1.45; color: #5A5E66;">IMU detects the lift, the visor face changes, the halo turns warm.</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <div class="d" style="font-size: 15px; font-weight: 700; color: #2563EB;">Hand in front, it backs off and chirps</div>
+      <div style="font-size: 13px; line-height: 1.45; color: #5A5E66;">Distance sensor in the nose, both wheel motors, the speaker behind the grille.</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <div class="d" style="font-size: 15px; font-weight: 700; color: #2563EB;">Follow the line, crouch at the end</div>
+      <div style="font-size: 13px; line-height: 1.45; color: #5A5E66;">Two line sensors under the body, the two leg servos dip it into a happy crouch.</div>
+    </div>
+  </div>
+</div></div></div>
+    </div><div class="card">
+      <div class="tag">Pet · side, what is where</div>
+      <div class="frame"><div><div style="width: 760px; height: 720px; background: linear-gradient(180deg, #DCE6F4 0%, #F2F5FA 55%, #F7F8FB 100%); color: #1C1E22; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 8px; padding: 32px 36px; box-sizing: border-box;">
+  <div style="display: flex; flex-direction: column; gap: 4px; flex-shrink: 0;">
+    <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #2563EB; font-weight: 600;">Side view · what is where</div>
+    <div class="d" style="font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.03em;">The battery is the brain</div>
+    <div style="font-size: 14px; color: #5A5E66;">The brain's cell feeds the motor rail, so the body carries motors, servos, sensors and a small cradle board, and no battery of its own. Dashed parts sit inside the shell.</div>
+  </div>
+
+  <svg viewBox="0 0 700 540" width="688" height="529" style="flex-shrink: 0; align-self: center;" font-family="Manrope, Helvetica Neue, Arial, sans-serif" font-size="12">
+    <defs>
+      <linearGradient id="rim2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#7C3AED"></stop>
+        <stop offset="1" stop-color="#22D3EE"></stop>
+      </linearGradient>
+      <linearGradient id="white2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFFFFF"></stop>
+        <stop offset="1" stop-color="#E3E7EE"></stop>
+      </linearGradient>
+    </defs>
+    <g transform="translate(20,90)">
+      <line x1="60" y1="400" x2="560" y2="400" stroke="#C9D3E2" stroke-width="2"></line>
+
+      <rect x="190" y="200" width="250" height="190" rx="95" fill="url(#white2)"></rect>
+
+      <rect x="200" y="220" width="120" height="190" rx="60" fill="#EDEFF3"></rect>
+      <circle cx="260" cy="370" r="30" fill="#1F2328"></circle>
+      <circle cx="260" cy="370" r="10" fill="#C9CED8"></circle>
+      <rect x="232" y="336" width="56" height="26" rx="4" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+      <circle cx="260" cy="262" r="9" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="4 3"></circle>
+
+      <rect x="400" y="392" width="14" height="8" rx="2" fill="#1F2328"></rect>
+      <rect x="422" y="392" width="14" height="8" rx="2" fill="#1F2328"></rect>
+
+      <rect x="395" y="170" width="60" height="50" rx="12" fill="#C9CED8"></rect>
+      <rect x="400" y="226" width="30" height="22" rx="3" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+
+      <g transform="rotate(-15 425 195)">
+        <ellipse cx="420" cy="90" rx="110" ry="120" fill="url(#white2)"></ellipse>
+        <rect x="466" y="10" width="40" height="190" rx="8" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+        <rect x="505" y="36" width="30" height="118" rx="15" fill="url(#rim2)"></rect>
+        <rect x="509" y="41" width="22" height="108" rx="11" fill="#0B0E14"></rect>
+        <rect x="514" y="80" width="8" height="26" rx="4" fill="#FFFFFF" opacity="0.9"></rect>
+        <g fill="#C9CED8">
+          <rect x="395" y="82" width="26" height="5" rx="2.5"></rect>
+          <rect x="395" y="94" width="28" height="5" rx="2.5"></rect>
+          <rect x="395" y="106" width="28" height="5" rx="2.5"></rect>
+          <rect x="395" y="118" width="26" height="5" rx="2.5"></rect>
+        </g>
+        <circle cx="420" cy="-22" r="6" fill="#E3E7EE"></circle>
+        <rect x="505" y="160" width="14" height="22" rx="6" fill="#1F2328"></rect>
+        <rect x="476" y="186" width="20" height="14" fill="#C8A24A"></rect>
+      </g>
+      <circle cx="425" cy="195" r="8" fill="#F7F8FB"></circle>
+    </g>
+
+    <g stroke="#2563EB" stroke-width="1" fill="none">
+      <line x1="526" y1="64" x2="490" y2="120"></line>
+      <line x1="526" y1="174" x2="521" y2="236"></line>
+      <line x1="526" y1="244" x2="470" y2="286"></line>
+      <line x1="526" y1="314" x2="470" y2="300"></line>
+      <line x1="526" y1="434" x2="438" y2="482"></line>
+      <line x1="126" y1="304" x2="228" y2="330"></line>
+      <line x1="126" y1="404" x2="252" y2="455"></line>
+    </g>
+
+    <g fill="#1C1E22" font-size="12">
+      <text x="530" y="60"><tspan font-weight="600" fill="#2563EB">Head pod</tspan><tspan x="530" dy="15">The brain slides in from</tspan><tspan x="530" dy="14">the back. The visor is its</tspan><tspan x="530" dy="14">screen and light ring.</tspan></text>
+      <text x="530" y="170"><tspan font-weight="600" fill="#2563EB">Nose</tspan><tspan x="530" dy="15">Distance sensor on</tspan><tspan x="530" dy="14">the I2C port.</tspan></text>
+      <text x="530" y="240"><tspan font-weight="600" fill="#2563EB">Dock</tspan><tspan x="530" dy="15">Edge connector into the</tspan><tspan x="530" dy="14">cradle, which wires P0</tspan><tspan x="530" dy="14">and P1 to the line sensors.</tspan></text>
+      <text x="530" y="310"><tspan font-weight="600" fill="#2563EB">Neck</tspan><tspan x="530" dy="15">Servo S3 tilts the head,</tspan><tspan x="530" dy="14">S4 pans it.</tspan></text>
+      <text x="530" y="430"><tspan font-weight="600" fill="#2563EB">Chin</tspan><tspan x="530" dy="15">Two line sensors</tspan><tspan x="530" dy="14">facing the floor.</tspan></text>
+      <text x="8" y="300"><tspan font-weight="600" fill="#2563EB">Legs</tspan><tspan x="8" dy="15">Servos S1 and S2</tspan><tspan x="8" dy="14">swivel them: crouch,</tspan><tspan x="8" dy="14">stand, lean.</tspan></text>
+      <text x="8" y="400"><tspan font-weight="600" fill="#2563EB">Wheels</tspan><tspan x="8" dy="15">TT motors in the</tspan><tspan x="8" dy="14">feet, on M1 and M2.</tspan></text>
+      <text x="335" y="524"><tspan font-weight="600" fill="#2563EB">Speaker</tspan> The grille on the side of the head pod sits over the brain's own speaker.</text>
+    </g>
+  </svg>
+</div></div></div>
+    </div><div class="card">
+      <div class="tag">Pet · parts and hookup</div>
+      <div class="frame"><div><div style="width: 760px; height: 760px; background: #F7F8FB; color: #1C1E22; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; padding: 32px 36px; box-sizing: border-box;">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #2563EB; font-weight: 600;">In the box · beyond the brain</div>
+    <div class="d" style="font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.03em;">Eight molded pieces, two motors, four servos</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px;">
+    <div style="display: flex; flex-direction: column;">
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #2563EB; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #D5DAE3;">Printed or molded</div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Body shell, top and bottom, gloss white</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Head pod, front and back halves, with visor window</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Visor light guide, clear, carries the halo</span><span class="m" style="color: #6B7280;">1</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Legs, left and right, with foot for the motor</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Neck cradle with edge-connector slot and tilt horn</span><span class="m" style="color: #6B7280;">1</span></div>
+
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #2563EB; font-weight: 600; padding: 18px 0 8px; border-bottom: 2px solid #D5DAE3;">Bought</div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>TT gear motors, 6 V</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>60 mm wheels with TPU tires</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>SG90-class servos: legs, tilt, pan</span><span class="m" style="color: #6B7280;">4</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Time-of-flight distance sensor, I2C</span><span class="m" style="color: #6B7280;">1</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Reflective line sensors</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Touch pad, foil sticker on the back</span><span class="m" style="color: #6B7280;">1</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: 13.5px;"><span>Cradle PCB, cables, M3 screws</span><span class="m" style="color: #6B7280;">1 set</span></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column;">
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #2563EB; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #D5DAE3;">What plugs where on the brain</div>
+      <div style="display: grid; grid-template-columns: 64px 1fr; gap: 0 12px; font-size: 13.5px;">
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #2563EB; font-weight: 500;">M1 M2</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Wheel motors in the left and right foot</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #2563EB; font-weight: 500;">S1 S2</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Left and right leg swivel</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #2563EB; font-weight: 500;">S3</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Head tilt</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #2563EB; font-weight: 500;">S4</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Head pan</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #2563EB; font-weight: 500;">P0 P1</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Line sensors, through the cradle</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #2563EB; font-weight: 500;">P2</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Touch pad on the back, for "pet me"</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #2563EB; font-weight: 500;">I2C</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Distance sensor in the nose</div>
+        <div class="m" style="padding: 8px 0; color: #2563EB; font-weight: 500;">onboard</div><div style="padding: 8px 0;">Mic, IMU, speaker, screen and light ring drive the face and halo</div>
+      </div>
+
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #2563EB; font-weight: 600; padding: 18px 0 8px; border-bottom: 2px solid #D5DAE3;">Why a pet, not a rover</div>
+      <div style="font-size: 13.5px; line-height: 1.5; padding-top: 8px; color: #1C1E22;">Every onboard sensor becomes a behaviour a child can name: hear, feel, see, react. The four servos use all four servo headers, and the spare clip pad becomes the touch pad. And the brain slides out of the head pod in one move, so the same head can go into the next kit.</div>
+    </div>
+  </div>
+</div></div></div>
+    </div><div class="card">
+      <div class="tag">Companion · front</div>
+      <div class="frame"><div><div style="width: 640px; height: 980px; background: linear-gradient(180deg, #FFE1CC 0%, #FFF2EA 55%, #FFF8F4 100%); color: #1C1E22; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; padding: 36px 40px; box-sizing: border-box;">
+  <div style="display: flex; flex-direction: column; gap: 4px; flex-shrink: 0;">
+    <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #D9480F; font-weight: 600;">Companion robot · Explorer and Builder tiers · front view</div>
+    <div style="display: flex; align-items: baseline; gap: 14px;"><div class="d" style="font-size: 40px; font-weight: 700; line-height: 1; letter-spacing: -0.03em;">Fahim the companion</div><div style="font-size: 30px; line-height: 1; color: #D9480F; direction: rtl;">فهيم</div></div>
+    <div style="font-size: 15px; color: #5A5E66; margin-top: 4px;">It sits on the desk and talks with its whole body: the head turns to you, the arms wave, the torso leans in. The brain is the head, and it lifts off in one move.</div>
+  </div>
+
+  <svg viewBox="0 0 560 550" width="560" height="550" style="flex-shrink: 0; align-self: center;">
+    <defs>
+      <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#7C3AED"></stop>
+        <stop offset="0.55" stop-color="#2563EB"></stop>
+        <stop offset="1" stop-color="#22D3EE"></stop>
+      </linearGradient>
+      <linearGradient id="white" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFA25C"></stop>
+        <stop offset="1" stop-color="#F26A1B"></stop>
+      </linearGradient>
+      <linearGradient id="arm" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#FFB27A"></stop>
+        <stop offset="1" stop-color="#F07A2E"></stop>
+      </linearGradient>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="6" result="b"></feGaussianBlur>
+        <feMerge><feMergeNode in="b"></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge>
+      </filter>
+    </defs>
+    <g transform="translate(0,10)">
+      <ellipse cx="280" cy="524" rx="190" ry="12" fill="#E8B99A" opacity="0.6"></ellipse>
+      <ellipse cx="280" cy="505" rx="150" ry="26" fill="#D5DAE3"></ellipse>
+      <ellipse cx="280" cy="497" rx="140" ry="22" fill="#EDEFF3"></ellipse>
+
+      <path d="M215,290 C205,370 165,440 175,472 C185,502 375,502 385,472 C395,440 355,370 345,290 Z" fill="url(#white)"></path>
+      <ellipse cx="280" cy="405" rx="52" ry="66" fill="#FFE3CF"></ellipse>
+      <rect x="262" y="340" width="36" height="14" rx="7" fill="#1F2328"></rect>
+      <circle cx="273" cy="347" r="2.5" fill="#5EE1FF"></circle>
+      <circle cx="287" cy="347" r="2.5" fill="#5EE1FF"></circle>
+
+      <g transform="rotate(32 162 300)">
+        <rect x="140" y="290" width="44" height="122" rx="22" fill="url(#arm)"></rect>
+        <circle cx="162" cy="412" r="26" fill="#FFC59A"></circle>
+        <circle cx="162" cy="412" r="14" fill="#FFE3CF"></circle>
+      </g>
+      <g transform="rotate(-32 398 300)">
+        <rect x="376" y="290" width="44" height="122" rx="22" fill="url(#arm)"></rect>
+        <circle cx="398" cy="412" r="26" fill="#FFC59A"></circle>
+        <circle cx="398" cy="412" r="14" fill="#FFE3CF"></circle>
+      </g>
+
+      <ellipse cx="280" cy="292" rx="42" ry="12" fill="#C4501A"></ellipse>
+
+      <rect x="120" y="58" width="320" height="242" rx="112" fill="url(#white)"></rect>
+      <ellipse cx="280" cy="64" rx="44" ry="7" fill="#FFB27A"></ellipse>
+      <ellipse cx="230" cy="86" rx="90" ry="16" fill="#FFFFFF" opacity="0.8"></ellipse>
+
+      <rect x="150" y="92" width="260" height="178" rx="82" fill="url(#rim)" filter="url(#glow)"></rect>
+      <rect x="157" y="99" width="246" height="164" rx="76" fill="#0B0E14"></rect>
+      <ellipse cx="235" cy="196" rx="22" ry="10" fill="#5EE1FF" opacity="0.25" filter="url(#glow)"></ellipse>
+      <ellipse cx="325" cy="196" rx="22" ry="10" fill="#5EE1FF" opacity="0.25" filter="url(#glow)"></ellipse>
+      <ellipse cx="235" cy="176" rx="27" ry="34" fill="#FFFFFF" filter="url(#glow)"></ellipse>
+      <ellipse cx="325" cy="176" rx="27" ry="34" fill="#FFFFFF" filter="url(#glow)"></ellipse>
+      <ellipse cx="235" cy="176" rx="27" ry="34" fill="none" stroke="#5EE1FF" stroke-width="4" opacity="0.8"></ellipse>
+      <ellipse cx="325" cy="176" rx="27" ry="34" fill="none" stroke="#5EE1FF" stroke-width="4" opacity="0.8"></ellipse>
+      <ellipse cx="225" cy="118" rx="56" ry="10" fill="#FFFFFF" opacity="0.14"></ellipse>
+
+      <g fill="#C4501A">
+        <rect x="414" y="150" width="20" height="6" rx="3"></rect>
+        <rect x="414" y="164" width="22" height="6" rx="3"></rect>
+        <rect x="414" y="178" width="23" height="6" rx="3"></rect>
+        <rect x="414" y="192" width="22" height="6" rx="3"></rect>
+        <rect x="414" y="206" width="20" height="6" rx="3"></rect>
+      </g>
+    </g>
+  </svg>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px;">
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <div class="d" style="font-size: 15px; font-weight: 700; color: #D9480F;">Say its name, it turns to you</div>
+      <div style="font-size: 13px; line-height: 1.45; color: #5A5E66;">Mic on the brain, a keyword model trained in the browser, the turntable motor in the base.</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <div class="d" style="font-size: 15px; font-weight: 700; color: #D9480F;">High-five, and the eyes light up</div>
+      <div style="font-size: 13px; line-height: 1.45; color: #5A5E66;">Touch pads in both hands on P0 and P1, the arm servos, the halo flashes.</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <div class="d" style="font-size: 15px; font-weight: 700; color: #D9480F;">Talk, and it leans in</div>
+      <div style="font-size: 13px; line-height: 1.45; color: #5A5E66;">Mic level drives the lean motor, the head tilts up, the distance sensor keeps it from bumping you.</div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 3px;">
+      <div class="d" style="font-size: 15px; font-weight: 700; color: #D9480F;">Pat its head, it closes its eyes</div>
+      <div style="font-size: 13px; line-height: 1.45; color: #5A5E66;">Touch pad on the head on P2, the visor face changes, the speaker purrs.</div>
+    </div>
+  </div>
+</div></div></div>
+    </div><div class="card">
+      <div class="tag">Companion · side, what is where</div>
+      <div class="frame"><div><div style="width: 760px; height: 720px; background: linear-gradient(180deg, #FFE1CC 0%, #FFF2EA 55%, #FFF8F4 100%); color: #1C1E22; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 8px; padding: 32px 36px; box-sizing: border-box;">
+  <div style="display: flex; flex-direction: column; gap: 4px; flex-shrink: 0;">
+    <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #D9480F; font-weight: 600;">Side view · what is where</div>
+    <div class="d" style="font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.03em;">No wheels. Two motors move the body instead</div>
+    <div style="font-size: 14px; color: #5A5E66;">One motor turns the body on its base, the other leans it forward and back. The brain's cell powers everything, so the body carries no battery. Dashed parts sit inside the shell.</div>
+  </div>
+
+  <svg viewBox="0 0 700 540" width="688" height="529" style="flex-shrink: 0; align-self: center;" font-family="Manrope, Helvetica Neue, Arial, sans-serif" font-size="12">
+    <defs>
+      <linearGradient id="rim2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#7C3AED"></stop>
+        <stop offset="1" stop-color="#22D3EE"></stop>
+      </linearGradient>
+      <linearGradient id="white2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#FFA25C"></stop>
+        <stop offset="1" stop-color="#F26A1B"></stop>
+      </linearGradient>
+    </defs>
+    <g transform="translate(20,90)">
+      <line x1="80" y1="400" x2="540" y2="400" stroke="#E8B99A" stroke-width="2"></line>
+
+      <rect x="170" y="368" width="260" height="32" rx="16" fill="#D5DAE3"></rect>
+      <rect x="270" y="372" width="60" height="22" rx="4" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+
+      <path d="M255,200 C250,260 225,330 230,366 C232,374 370,374 372,366 C377,330 352,260 347,200 Z" fill="url(#white2)"></path>
+      <rect x="300" y="330" width="50" height="24" rx="4" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+      <rect x="352" y="250" width="14" height="20" rx="6" fill="#1F2328"></rect>
+
+      <g transform="rotate(-25 310 215)">
+        <rect x="290" y="205" width="40" height="112" rx="20" fill="#FFB27A"></rect>
+        <circle cx="310" cy="317" r="22" fill="#FFC59A"></circle>
+      </g>
+      <circle cx="310" cy="215" r="9" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="4 3"></circle>
+
+      <rect x="270" y="160" width="60" height="44" rx="12" fill="#C4501A"></rect>
+      <rect x="285" y="206" width="30" height="20" rx="3" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+
+      <g transform="rotate(-10 300 182)">
+        <rect x="190" y="-10" width="220" height="186" rx="90" fill="url(#white2)"></rect>
+        <rect x="250" y="-16" width="90" height="10" rx="5" fill="#FFB27A"></rect>
+        <rect x="300" y="0" width="40" height="182" rx="8" fill="none" stroke="#7A8494" stroke-width="1.5" stroke-dasharray="6 5"></rect>
+        <rect x="372" y="20" width="30" height="140" rx="15" fill="url(#rim2)"></rect>
+        <rect x="376" y="25" width="22" height="130" rx="11" fill="#0B0E14"></rect>
+        <rect x="381" y="70" width="8" height="30" rx="4" fill="#FFFFFF" opacity="0.9"></rect>
+        <g fill="#C4501A">
+          <rect x="215" y="60" width="26" height="5" rx="2.5"></rect>
+          <rect x="215" y="72" width="28" height="5" rx="2.5"></rect>
+          <rect x="215" y="84" width="28" height="5" rx="2.5"></rect>
+          <rect x="215" y="96" width="26" height="5" rx="2.5"></rect>
+        </g>
+        <line x1="198" y1="40" x2="198" y2="130" stroke="#9AA1AD" stroke-width="1.5" stroke-dasharray="4 3"></line>
+        <rect x="310" y="170" width="20" height="12" fill="#C8A24A"></rect>
+      </g>
+      <circle cx="300" cy="182" r="8" fill="#FFE3CF"></circle>
+    </g>
+
+    <g stroke="#D9480F" stroke-width="1" fill="none">
+      <line x1="526" y1="64" x2="400" y2="140"></line>
+      <line x1="526" y1="204" x2="345" y2="268"></line>
+      <line x1="526" y1="294" x2="352" y2="290"></line>
+      <line x1="526" y1="354" x2="388" y2="352"></line>
+      <line x1="526" y1="444" x2="372" y2="432"></line>
+      <line x1="126" y1="144" x2="212" y2="180"></line>
+      <line x1="126" y1="304" x2="322" y2="330"></line>
+    </g>
+
+    <g fill="#1C1E22" font-size="12">
+      <text x="530" y="60"><tspan font-weight="600" fill="#D9480F">Head pod</tspan><tspan x="530" dy="15">The brain stands inside</tspan><tspan x="530" dy="14">it. The visor is its</tspan><tspan x="530" dy="14">screen and light ring.</tspan></text>
+      <text x="530" y="200"><tspan font-weight="600" fill="#D9480F">Dock</tspan><tspan x="530" dy="15">Edge connector into the</tspan><tspan x="530" dy="14">cradle, which wires P0, P1</tspan><tspan x="530" dy="14">and P2 to the touch pads.</tspan></text>
+      <text x="530" y="290"><tspan font-weight="600" fill="#D9480F">Neck</tspan><tspan x="530" dy="15">Servo S3 tilts the head,</tspan><tspan x="530" dy="14">S4 pans it.</tspan></text>
+      <text x="530" y="350"><tspan font-weight="600" fill="#D9480F">Chest</tspan><tspan x="530" dy="15">Distance sensor on</tspan><tspan x="530" dy="14">the I2C port.</tspan></text>
+      <text x="530" y="440"><tspan font-weight="600" fill="#D9480F">Base</tspan><tspan x="530" dy="15">M1 turns the body on a</tspan><tspan x="530" dy="14">turntable, M2 leans it</tspan><tspan x="530" dy="14">through a crank.</tspan></text>
+      <text x="8" y="140"><tspan font-weight="600" fill="#D9480F">Back hatch</tspan><tspan x="8" dy="15">Head release and</tspan><tspan x="8" dy="14">the brain's USB-C.</tspan></text>
+      <text x="8" y="300"><tspan font-weight="600" fill="#D9480F">Arms</tspan><tspan x="8" dy="15">Servos S1 and S2 at</tspan><tspan x="8" dy="14">the shoulders. Touch</tspan><tspan x="8" dy="14">pads in the hands.</tspan></text>
+      <text x="335" y="524"><tspan font-weight="600" fill="#D9480F">Speaker</tspan> The grille on the side of the head pod sits over the brain's own speaker.</text>
+    </g>
+  </svg>
+</div></div></div>
+    </div><div class="card">
+      <div class="tag">Companion · parts and hookup</div>
+      <div class="frame"><div><div style="width: 760px; height: 760px; background: #FFF8F4; color: #1C1E22; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 18px; padding: 32px 36px; box-sizing: border-box;">
+  <div style="display: flex; flex-direction: column; gap: 4px;">
+    <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #D9480F; font-weight: 600;">In the box · beyond the brain</div>
+    <div class="d" style="font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -0.03em;">Nine molded pieces, two motors, four servos</div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px;">
+    <div style="display: flex; flex-direction: column;">
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #D9480F; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #D5DAE3;">Printed or molded</div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Body shell, front and back, gloss orange</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Base with turntable ring and lean crank</span><span class="m" style="color: #6B7280;">1</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Head pod, front and back halves, orange, with visor window</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Visor light guide, clear, carries the halo</span><span class="m" style="color: #6B7280;">1</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Arms with mitten hands</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Neck cradle with edge-connector slot and tilt horn</span><span class="m" style="color: #6B7280;">1</span></div>
+
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #D9480F; font-weight: 600; padding: 18px 0 8px; border-bottom: 2px solid #D5DAE3;">Bought</div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>TT gear motors, 6 V: turntable and lean</span><span class="m" style="color: #6B7280;">2</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>SG90-class servos: arms, tilt, pan</span><span class="m" style="color: #6B7280;">4</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Time-of-flight distance sensor, I2C</span><span class="m" style="color: #6B7280;">1</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid #E6E9EF; font-size: 13.5px;"><span>Touch pads: two hands, head top</span><span class="m" style="color: #6B7280;">3</span></div>
+      <div style="display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; font-size: 13.5px;"><span>Cradle PCB, cables, M3 screws, rubber feet</span><span class="m" style="color: #6B7280;">1 set</span></div>
+    </div>
+
+    <div style="display: flex; flex-direction: column;">
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #D9480F; font-weight: 600; padding-bottom: 8px; border-bottom: 2px solid #D5DAE3;">What plugs where on the brain</div>
+      <div style="display: grid; grid-template-columns: 64px 1fr; gap: 0 12px; font-size: 13.5px;">
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #D9480F; font-weight: 500;">M1</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Turntable in the base, turns to face you</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #D9480F; font-weight: 500;">M2</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Lean crank, forward and back</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #D9480F; font-weight: 500;">S1 S2</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Left and right arm</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #D9480F; font-weight: 500;">S3</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Head tilt</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #D9480F; font-weight: 500;">S4</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Head pan</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #D9480F; font-weight: 500;">P0 P1</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Touch pads in the hands, through the cradle</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #D9480F; font-weight: 500;">P2</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Touch pad on the head, for "pat me"</div>
+        <div class="m" style="padding: 8px 0; border-bottom: 1px solid #E6E9EF; color: #D9480F; font-weight: 500;">I2C</div><div style="padding: 8px 0; border-bottom: 1px solid #E6E9EF;">Distance sensor in the chest</div>
+        <div class="m" style="padding: 8px 0; color: #D9480F; font-weight: 500;">onboard</div><div style="padding: 8px 0;">Mic, IMU, speaker, screen and light ring drive the face, halo and voice</div>
+      </div>
+
+      <div style="font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #D9480F; font-weight: 600; padding: 18px 0 8px; border-bottom: 2px solid #D5DAE3;">Why a companion, not a rover</div>
+      <div style="font-size: 13.5px; line-height: 1.5; padding-top: 8px; color: #1C1E22;">A companion turns every onboard sensor into a relationship: it hears, feels touch, sees you coming, and answers with its body. It never drives off a table. Every port on the brain is used, and the head still lifts off in one move for the electronics lessons. One caveat: a face this size wants a bigger screen than 1.54″. The visor glass widens the look for now, but this is the strongest argument for the 1.9″ option in the spec's open questions.</div>
+    </div>
+  </div>
+</div></div></div>
+    </div>
+</main>
+</body></html>
