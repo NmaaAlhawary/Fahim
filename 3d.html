@@ -1,0 +1,210 @@
+<title>Fahim in 3D</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Manrope:wght@400;500;600&display=swap">
+<style>
+  :root { --ground: #E9EEF5; --panel: #FFFFFF; --ink: #161B26; --ink-2: #4A5565; --ink-3: #7A8494; --line: #D5DAE3; --accent: #2563EB; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ground: #0F131A; --panel: #171C25; --ink: #E8ECF2; --ink-2: #B4BCC8; --ink-3: #7F8998; --line: #2A313D; --accent: #60A5FA; color-scheme: dark; } }
+  :root[data-theme="dark"] { --ground: #0F131A; --panel: #171C25; --ink: #E8ECF2; --ink-2: #B4BCC8; --ink-3: #7F8998; --line: #2A313D; --accent: #60A5FA; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: "Manrope", "Helvetica Neue", Arial, sans-serif; overflow: hidden; }
+  #c { position: fixed; left: 0; top: 0; width: 100vw; height: 100vh; display: block; }
+  .hud { position: fixed; left: 20px; top: 18px; display: flex; flex-direction: column; gap: 10px; pointer-events: none; }
+  .hud h1 { font-family: "Sora", sans-serif; font-size: 22px; font-weight: 800; margin: 0; letter-spacing: -0.02em; }
+  .hud .sub { font-size: 13px; color: var(--ink-2); max-width: 46ch; }
+  .panel { position: fixed; left: 20px; bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .seg { display: inline-flex; background: var(--panel); border: 1px solid var(--line); border-radius: 999px; padding: 4px; gap: 4px; box-shadow: 0 6px 20px rgba(22,27,38,.10); }
+  .seg button, .btn { appearance: none; border: 0; background: transparent; color: var(--ink-2); font: inherit; font-weight: 600; font-size: 13px; padding: 8px 14px; border-radius: 999px; cursor: pointer; }
+  .seg button.on { background: var(--accent); color: #fff; }
+  .btn { background: var(--panel); border: 1px solid var(--line); color: var(--ink); box-shadow: 0 6px 20px rgba(22,27,38,.10); }
+  .btn.on { border-color: var(--accent); color: var(--accent); }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .legend { position: fixed; right: 20px; bottom: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 12.5px; color: var(--ink-2); max-width: 260px; box-shadow: 0 6px 20px rgba(22,27,38,.10); }
+  .legend b { color: var(--ink); font-family: "Sora", sans-serif; display: block; margin-bottom: 4px; }
+  .legend ol { margin: 4px 0 0; padding-left: 18px; }
+  .legend li { margin: 2px 0; }
+  .hint { position: fixed; right: 20px; top: 18px; font-size: 12px; color: var(--ink-3); }
+</style>
+
+<canvas id="c"></canvas>
+<div class="hud">
+  <h1>Fahim in 3D</h1>
+  <div class="sub" id="sub">The companion body with the brain as its head. Drag to orbit, scroll to zoom.</div>
+</div>
+<div class="hint">Drag · scroll · idle auto-rotate</div>
+<div class="panel">
+  <div class="seg">
+    <button type="button" id="vComp" class="on">Companion</button>
+    <button type="button" id="vBrain">Brain</button>
+  </div>
+  <button type="button" class="btn" id="act">Lift the head</button>
+</div>
+<div class="legend" id="legend"><b>Companion</b>Orange gloss body. Head pod holds the brain; the visor is its screen and halo. Two arms, turntable base.</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  const canvas = document.getElementById('c');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio));
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+
+  // lights
+  scene.add(new THREE.HemisphereLight(0xffffff, 0xbfc7d6, 0.9));
+  const key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(4, 7, 5); key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048); key.shadow.camera.left = -6; key.shadow.camera.right = 6; key.shadow.camera.top = 6; key.shadow.camera.bottom = -6; key.shadow.radius = 4;
+  scene.add(key);
+  const fill = new THREE.DirectionalLight(0xdfe8ff, 0.35); fill.position.set(-5, 3, -3); scene.add(fill);
+  const ground = new THREE.Mesh(new THREE.CircleGeometry(6, 64), new THREE.ShadowMaterial({ opacity: 0.18 }));
+  ground.rotation.x = -Math.PI / 2; ground.receiveShadow = true; scene.add(ground);
+
+  // materials
+  const M = {
+    orange: new THREE.MeshStandardMaterial({ color: 0xF26A1B, roughness: 0.3, metalness: 0.05 }),
+    orangeD: new THREE.MeshStandardMaterial({ color: 0xC4501A, roughness: 0.5 }),
+    cream: new THREE.MeshStandardMaterial({ color: 0xFFE3CF, roughness: 0.6 }),
+    white: new THREE.MeshStandardMaterial({ color: 0xFFFFFF, roughness: 0.25, metalness: 0.05 }),
+    grey: new THREE.MeshStandardMaterial({ color: 0xC9CED8, roughness: 0.6 }),
+    dark: new THREE.MeshStandardMaterial({ color: 0x1F2328, roughness: 0.5 }),
+    black: new THREE.MeshStandardMaterial({ color: 0x0B0E14, roughness: 0.15, metalness: 0.2 }),
+    eye: new THREE.MeshBasicMaterial({ color: 0xFFFFFF }),
+    cyan: new THREE.MeshBasicMaterial({ color: 0x5EE1FF }),
+    gold: new THREE.MeshStandardMaterial({ color: 0xC8A24A, roughness: 0.35, metalness: 0.6 }),
+    pcb: new THREE.MeshStandardMaterial({ color: 0x0F3D4A, roughness: 0.7 }),
+    cell: new THREE.MeshStandardMaterial({ color: 0x3A414B, roughness: 0.6 }),
+    glass: new THREE.MeshStandardMaterial({ color: 0xFFFFFF, roughness: 0.1, transparent: true, opacity: 0.35 }),
+    halo: new THREE.MeshBasicMaterial({ vertexColors: true }),
+  };
+  function mesh(g, m, shadow = true) { const o = new THREE.Mesh(g, m); o.castShadow = shadow; o.receiveShadow = shadow; return o; }
+  function roundedRect(w, h, r) { const s = new THREE.Shape(); const x = -w / 2, y = -h / 2;
+    s.moveTo(x + r, y); s.lineTo(x + w - r, y); s.quadraticCurveTo(x + w, y, x + w, y + r); s.lineTo(x + w, y + h - r); s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    s.lineTo(x + r, y + h); s.quadraticCurveTo(x, y + h, x, y + h - r); s.lineTo(x, y + r); s.quadraticCurveTo(x, y, x + r, y); return s; }
+  function slab(w, h, d, r, bevel) { return new THREE.ExtrudeGeometry(roundedRect(w, h, r), { depth: d, bevelEnabled: true, bevelSize: bevel, bevelThickness: bevel, bevelSegments: 4, curveSegments: 16 }); }
+  function haloGeo(w, h, r, d) { const g = slab(w, h, d, r, 0.02); const pos = g.attributes.position; const col = new Float32Array(pos.count * 3);
+    const a = new THREE.Color(0x7C3AED), b = new THREE.Color(0x2563EB), c = new THREE.Color(0x22D3EE);
+    for (let i = 0; i < pos.count; i++) { const t = (pos.getX(i) / w + 0.5); const col1 = t < 0.55 ? a.clone().lerp(b, t / 0.55) : b.clone().lerp(c, (t - 0.55) / 0.45); col[i * 3] = col1.r; col[i * 3 + 1] = col1.g; col[i * 3 + 2] = col1.b; }
+    g.setAttribute('color', new THREE.BufferAttribute(col, 3)); return g; }
+  function capsule(r, len, mat) { const g = new THREE.Group(); const cyl = mesh(new THREE.CylinderGeometry(r, r, len, 32), mat); g.add(cyl);
+    const a = mesh(new THREE.SphereGeometry(r, 32, 16), mat); a.position.y = len / 2; g.add(a); const b = a.clone(); b.position.y = -len / 2; g.add(b); return g; }
+
+  // ---------- the brain (92 x 72 x 13 mm -> 1 unit = 40 mm) ----------
+  function buildBrain() {
+    const B = new THREE.Group(); const W = 2.3, H = 1.8, D = 0.33;
+    const layers = [];
+    function layer(o, idx) { o.userData.idx = idx; layers.push(o); B.add(o); return o; }
+    // bottom shell
+    const bottom = new THREE.Group();
+    const bs = mesh(slab(W, H, D * 0.45, 0.5, 0.04), M.white); bs.rotation.x = -Math.PI / 2; bs.position.y = 0; bottom.add(bs);
+    const conn = mesh(new THREE.BoxGeometry(1.6, 0.06, 0.16), M.gold); conn.position.set(0, 0.05, H / 2 + 0.02); bottom.add(conn);
+    for (let i = 0; i < 5; i++) { const pad = mesh(new THREE.TorusGeometry(0.09, 0.03, 12, 32), M.gold); pad.rotation.x = Math.PI / 2; pad.position.set(-0.9 + i * 0.45, D * 0.45 + 0.02, 0.62); bottom.add(pad); }
+    layer(bottom, 0);
+    // cell
+    const cell = mesh(new THREE.BoxGeometry(1.5, 0.12, 1.0), M.cell); cell.position.set(-0.2, D * 0.45 + 0.07, -0.1); layer(cell, 1);
+    // pcb
+    const pcb = new THREE.Group();
+    const board = mesh(new THREE.BoxGeometry(W - 0.25, 0.04, H - 0.25), M.pcb); pcb.add(board);
+    const mcu = mesh(new THREE.BoxGeometry(0.5, 0.06, 0.4), M.dark); mcu.position.set(0.55, 0.05, 0.25); pcb.add(mcu);
+    [[0.75, -0.35, 0.12], [0.35, -0.5, 0.1], [-0.2, -0.6, 0.12]].forEach(p => { const ch = mesh(new THREE.BoxGeometry(p[2], 0.05, p[2]), M.dark); ch.position.set(p[0], 0.045, p[1]); pcb.add(ch); });
+    for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2; const led = mesh(new THREE.BoxGeometry(0.06, 0.04, 0.06), M.cyan, false); led.position.set(-0.5 + Math.cos(a) * 0.62, 0.04, -0.05 + Math.sin(a) * 0.62); pcb.add(led); }
+    pcb.position.y = D * 0.45 + 0.16; layer(pcb, 2);
+    // lcd
+    const lcd = mesh(new THREE.BoxGeometry(0.9, 0.05, 0.9), M.black); lcd.position.set(-0.5, D * 0.45 + 0.22, -0.05); layer(lcd, 3);
+    // light guide ring
+    const lg = mesh(slab(1.5, 1.3, 0.05, 0.45, 0.02), M.glass); lg.rotation.x = -Math.PI / 2; lg.position.set(-0.5, D * 0.45 + 0.26, -0.05); layer(lg, 4);
+    // top shell with visor + buttons
+    const top = new THREE.Group();
+    const ts = mesh(slab(W, H, D * 0.5, 0.5, 0.04), M.white); ts.rotation.x = -Math.PI / 2; top.add(ts);
+    const halo = mesh(haloGeo(1.45, 1.25, 0.45, 0.03), M.halo, false); halo.rotation.x = -Math.PI / 2; halo.position.set(-0.5, D * 0.5 + 0.005, -0.05); top.add(halo);
+    const visor = mesh(slab(1.3, 1.1, 0.02, 0.4, 0.02), M.black, false); visor.rotation.x = -Math.PI / 2; visor.position.set(-0.5, D * 0.5 + 0.03, -0.05); top.add(visor);
+    [-0.7, -0.3].forEach(x => { const eye = mesh(new THREE.SphereGeometry(0.13, 24, 16), M.eye, false); eye.scale.set(1, 0.25, 1.2); eye.position.set(x, D * 0.5 + 0.07, -0.05); top.add(eye); });
+    [0.55, 0.9].forEach(x => { const b = mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.06, 24), M.white); b.position.set(x, D * 0.5 + 0.03, -0.35); top.add(b); });
+    for (let i = 0; i < 5; i++) { const s = mesh(new THREE.BoxGeometry(0.44, 0.01, 0.025), M.grey, false); s.position.set(0.72, D * 0.5 + 0.01, 0.0 + i * 0.07); top.add(s); }
+    const usb = mesh(new THREE.BoxGeometry(0.06, 0.1, 0.24), M.grey); usb.position.set(W / 2 + 0.01, D * 0.25, 0.1); top.add(usb);
+    top.position.y = D * 0.45; layer(top, 5);
+    B.userData.layers = layers;
+    return B;
+  }
+
+  // ---------- the companion ----------
+  function buildCompanion() {
+    const C = new THREE.Group();
+    const base = mesh(new THREE.CylinderGeometry(1.5, 1.6, 0.28, 64), M.grey); base.position.y = 0.14; C.add(base);
+    const ring = mesh(new THREE.TorusGeometry(1.35, 0.07, 16, 64), M.dark); ring.rotation.x = Math.PI / 2; ring.position.y = 0.3; C.add(ring);
+    const body = new THREE.Group(); body.position.y = 0.3;
+    const pts = []; for (let i = 0; i <= 12; i++) { const t = i / 12; const r = 1.15 - 0.6 * Math.pow(t, 1.4); pts.push(new THREE.Vector2(r, t * 2.0)); }
+    const torso = mesh(new THREE.LatheGeometry(pts, 64), M.orange); body.add(torso);
+    const belly = mesh(new THREE.SphereGeometry(0.55, 32, 24), M.cream); belly.scale.set(1, 1.3, 0.35); belly.position.set(0, 0.85, 0.9); body.add(belly);
+    const chest = mesh(new THREE.BoxGeometry(0.34, 0.12, 0.08), M.dark); chest.position.set(0, 1.45, 1.02); body.add(chest);
+    [-0.07, 0.07].forEach(x => { const d = mesh(new THREE.SphereGeometry(0.025, 12, 8), M.cyan, false); d.position.set(x, 1.45, 1.07); body.add(d); });
+    // arms
+    function arm(side) { const a = new THREE.Group(); a.position.set(side * 1.0, 1.7, 0.1);
+      const cap = capsule(0.19, 0.9, M.orange); cap.position.y = -0.5; a.add(cap);
+      const hand = mesh(new THREE.SphereGeometry(0.26, 32, 16), M.cream); hand.position.y = -1.05; a.add(hand);
+      a.rotation.z = side * 0.55; return a; }
+    const armL = arm(-1), armR = arm(1); body.add(armL, armR);
+    const neck = mesh(new THREE.CylinderGeometry(0.42, 0.46, 0.3, 32), M.orangeD); neck.position.y = 2.1; body.add(neck);
+    // head
+    const head = new THREE.Group(); head.position.y = 2.95;
+    const skull = mesh(new THREE.SphereGeometry(1, 48, 32), M.orange); skull.scale.set(1.45, 1.05, 1.15); head.add(skull);
+    const halo = mesh(haloGeo(2.0, 1.35, 0.6, 0.03), M.halo, false); halo.position.set(0, 0, 1.0); halo.rotation.x = -0.1; head.add(halo);
+    const visor = mesh(slab(1.86, 1.22, 0.06, 0.56, 0.02), M.black, false); visor.position.set(0, 0, 1.04); visor.rotation.x = -0.1; head.add(visor);
+    const eyes = new THREE.Group(); [-0.42, 0.42].forEach(x => { const e = mesh(new THREE.SphereGeometry(0.2, 24, 16), M.eye, false); e.scale.set(1, 1.3, 0.35); e.position.set(x, 0.02, 1.16); eyes.add(e); }); head.add(eyes);
+    for (let i = 0; i < 5; i++) { const s = mesh(new THREE.BoxGeometry(0.03, 0.04, 0.3), M.orangeD, false); s.position.set(1.42, 0.25 - i * 0.12, 0.15); head.add(s); }
+    const pad = mesh(new THREE.CylinderGeometry(0.3, 0.3, 0.04, 32), M.orangeD); pad.position.y = 1.05; head.add(pad);
+    // brain inside the head (hidden until lifted)
+    const brain = buildBrain(); brain.scale.set(0.42, 0.42, 0.42); brain.rotation.x = Math.PI / 2; brain.position.set(0, 0.05, 0.6); head.add(brain);
+    body.add(head);
+    C.add(body);
+    C.userData = { head, brain, armR, eyes, body };
+    return C;
+  }
+
+  const companion = buildCompanion(); scene.add(companion);
+  const brainSolo = buildBrain(); brainSolo.position.y = 0.6; brainSolo.visible = false; scene.add(brainSolo);
+
+  // ---------- camera / controls ----------
+  const target = new THREE.Vector3(0, 1.9, 0);
+  let theta = 0.6, phi = 1.15, dist = 9, autoRot = true, lastInput = 0;
+  function placeCamera() { camera.position.set(target.x + dist * Math.sin(phi) * Math.sin(theta), target.y + dist * Math.cos(phi), target.z + dist * Math.sin(phi) * Math.cos(theta)); camera.lookAt(target); }
+  let dragging = false, px = 0, py = 0;
+  canvas.addEventListener('pointerdown', e => { dragging = true; px = e.clientX; py = e.clientY; canvas.setPointerCapture(e.pointerId); lastInput = performance.now(); });
+  canvas.addEventListener('pointermove', e => { if (!dragging) return; theta -= (e.clientX - px) * 0.008; phi = Math.min(1.5, Math.max(0.35, phi - (e.clientY - py) * 0.006)); px = e.clientX; py = e.clientY; lastInput = performance.now(); });
+  canvas.addEventListener('pointerup', () => { dragging = false; });
+  canvas.addEventListener('wheel', e => { e.preventDefault(); dist = Math.min(16, Math.max(3.5, dist * (1 + e.deltaY * 0.001))); lastInput = performance.now(); }, { passive: false });
+
+  // ---------- views and actions ----------
+  const sub = document.getElementById('sub'), legend = document.getElementById('legend'), act = document.getElementById('act');
+  let view = 'comp', lift = 0, liftOn = false, explode = 0, explodeOn = false;
+  function setView(v) { view = v; document.getElementById('vComp').classList.toggle('on', v === 'comp'); document.getElementById('vBrain').classList.toggle('on', v === 'brain');
+    companion.visible = v === 'comp'; brainSolo.visible = v === 'brain';
+    if (v === 'comp') { target.set(0, 1.9, 0); dist = 9; act.textContent = liftOn ? 'Lower the head' : 'Lift the head'; sub.textContent = 'The companion body with the brain as its head. Drag to orbit, scroll to zoom.'; legend.innerHTML = '<b>Companion</b>Orange gloss body. Head pod holds the brain; the visor is its screen and halo. Two arms, turntable base.'; }
+    else { target.set(0, 0.7, 0); dist = 6; act.textContent = explodeOn ? 'Close it up' : 'Open it up'; sub.textContent = 'The brain by itself: 92 × 72 × 13 mm. Open it up to see the six layers.'; legend.innerHTML = '<b>Brain, six layers</b><ol><li>Top shell, visor, halo, buttons</li><li>Light-guide ring</li><li>1.54″ LCD</li><li>Main board: ESP32-S3, IMU, mic, amp, H-bridge, 10 LEDs</li><li>Li-ion cell, 1800 mAh</li><li>Bottom shell, edge connector, clip pads</li></ol>'; } }
+  document.getElementById('vComp').addEventListener('click', () => setView('comp'));
+  document.getElementById('vBrain').addEventListener('click', () => setView('brain'));
+  act.addEventListener('click', () => { if (view === 'comp') { liftOn = !liftOn; act.textContent = liftOn ? 'Lower the head' : 'Lift the head'; } else { explodeOn = !explodeOn; act.textContent = explodeOn ? 'Close it up' : 'Open it up'; } });
+
+  // ---------- loop ----------
+  const clock = new THREE.Clock();
+  function resize() { const w = canvas.clientWidth, h = canvas.clientHeight; if (canvas.width !== w * renderer.getPixelRatio() || canvas.height !== h * renderer.getPixelRatio()) { renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); } }
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function tick() {
+    resize(); const dt = Math.min(0.05, clock.getDelta()); const t = clock.elapsedTime;
+    if (!dragging && performance.now() - lastInput > 2500 && !reduced) theta += dt * 0.25;
+    placeCamera();
+    // companion: lift head + brain slide, idle breathing
+    const u = companion.userData;
+    lift += ((liftOn ? 1 : 0) - lift) * Math.min(1, dt * 4);
+    u.head.position.y = 2.95 + lift * 1.3; u.brain.position.z = 0.6 - lift * 1.6; u.brain.position.y = 0.05 + lift * 0.4;
+    u.head.rotation.x = reduced ? 0 : Math.sin(t * 1.2) * 0.03; u.body.rotation.y = reduced ? 0 : Math.sin(t * 0.5) * 0.06;
+    u.armR.rotation.z = 0.55 + (reduced ? 0 : Math.sin(t * 1.6) * 0.08);
+    const blink = (t % 3.4) > 3.25 ? 0.15 : 1; u.eyes.children.forEach(e => e.scale.y = 1.3 * blink);
+    // brain: explode
+    explode += ((explodeOn ? 1 : 0) - explode) * Math.min(1, dt * 3);
+    brainSolo.userData.layers.forEach(l => { l.position.y = (l.userData.baseY ?? (l.userData.baseY = l.position.y)) + l.userData.idx * 0.55 * explode; });
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+  setView('comp'); tick();
+})();
+</script>
